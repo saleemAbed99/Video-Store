@@ -1,0 +1,13 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex">
+      <h3 class="text-danger mb-4">Available Galleries</h3>
+      <div class="col-lg-10 col-md-8 col-sm-6 mb-5 mb-lg-0 d-flex flex-wrap">
+        <app-ugallery-item
+          *ngFor="let gallery of galleries"
+          [gallery]="gallery"
+        ></app-ugallery-item>
+      </div>
+    </div>
+  </div>
+</section>

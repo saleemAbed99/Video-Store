@@ -1,0 +1,65 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center h-100">
+      <div *ngIf="videos.length > 0" class="col-lg-6 mb-5 mb-lg-0">
+        <h3 class="text-danger mb-5">Your Videos</h3>
+
+        <app-video-item
+          *ngFor="let video of videos"
+          [video]="video"
+          (onDelete)="DeleteVedio($event)"
+        ></app-video-item>
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mb-3">
+        <div
+          class="alert alert-success"
+          #message
+          *ngIf="successMessage.length != 0"
+        >
+          <div>{{ successMessage }}</div>
+        </div>
+        <h3 class="text-danger mb-5">Update Gallery</h3>
+
+        <form
+          [formGroup]="updateGalleryForm"
+          (ngSubmit)="onSubmit()"
+          class="mb-4"
+        >
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="name"
+              class="form-control form-control-lg"
+              placeholder="Gallery Name"
+              formControlName="name"
+            />
+            <label class="form-label" for="name">Name</label>
+          </div>
+
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="description"
+              class="form-control form-control-lg"
+              placeholder="Description"
+              formControlName="description"
+            />
+            <label class="form-label" for="description">Description</label>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="submit"
+              class="btn btn-danger btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              [disabled]="!updateGalleryForm.valid"
+            >
+              Update Gallery
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

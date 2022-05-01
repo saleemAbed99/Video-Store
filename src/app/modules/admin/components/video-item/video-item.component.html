@@ -1,0 +1,33 @@
+<div
+  class="gallery-item mr-2 ml-2 alert alert-danger d-flex flex-column justify-content-center align-items-center"
+  style="height: 21rem; width: 27rem"
+>
+  <div class="video-container" style="width: 100%">
+    <video
+      [src]="createVideoPath(video.uri)"
+      type="video/mp4"
+      width="100%"
+      controls
+    ></video>
+  </div>
+  <div class="left ml-2 mt-3" style="width: 100%">
+    <div class="d-flex justify-content-between">
+      <h3>
+        {{ video.title }}
+      </h3>
+      <div class="operations-container align-self-end">
+        <h3>
+          <fa-icon
+            [ngStyle]="{ color: 'red' }"
+            (click)="onDeleteVideo(video.id)"
+            [icon]="faTrash"
+            style="margin-right: '25px'"
+          ></fa-icon>
+          <a routerLink="video/{{ video.id }}">
+            <fa-icon [ngStyle]="{ color: 'red' }" [icon]="faVisit"></fa-icon>
+          </a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

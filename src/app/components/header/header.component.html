@@ -1,0 +1,56 @@
+<div
+  class="d-flex p-2 justify-content-end align-items-center mb-3"
+  style="width: 100%"
+>
+  <button
+    *ngIf="getRole() == 'user' && !hasRoute('/home')"
+    type="button"
+    class="btn btn-danger btn-lg"
+    style="
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      align-self: end;
+      margin-right: 15px;
+    "
+    (click)="goToHome()"
+  >
+    Home
+  </button>
+  <button
+    *ngIf="getRole() == 'user' && !hasRoute('/home/favorite')"
+    type="button"
+    class="btn btn-danger btn-lg"
+    style="
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      align-self: end;
+      margin-right: 15px;
+    "
+    (click)="goToFavorite()"
+  >
+    Favorite
+  </button>
+
+  <button
+    *ngIf="!hasRoute('/profile')"
+    type="button"
+    class="btn btn-danger btn-lg"
+    style="
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      align-self: end;
+      margin-right: 15px;
+    "
+    (click)="goToProfile()"
+  >
+    Profile
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger btn-lg"
+    style="padding-left: 2.5rem; padding-right: 2.5rem; align-self: end"
+    (click)="logout()"
+  >
+    Logout
+  </button>
+</div>

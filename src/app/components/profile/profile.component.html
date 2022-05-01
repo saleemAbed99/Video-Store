@@ -1,0 +1,140 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+   
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-6 mb-5 mb-lg-0 d-none d-lg-block">
+        <h1 class="my-5 display-3 fw-bold ls-tight">
+          <span class="text-muted"
+            >Set Up Your
+            <span class="text-danger">Video Store</span> Profile</span
+          >
+        </h1>
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mb-10">
+        <div class="alert alert-danger" *ngFor="let error of errors">
+          <div>{{ error }}</div>
+        </div>
+        <div
+          class="alert alert-success"
+          #message
+          *ngIf="successMessage.length != 0"
+        >
+          <div>{{ successMessage }}</div>
+        </div>
+        <h1 class="text-center text-danger mb-5">Set Up Your Profile</h1>
+        <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="firstName"
+              class="form-control form-control-lg"
+              placeholder="Enter your first name"
+              formControlName="firstName"
+            />
+            <label class="form-label" for="firstName">First Name</label>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                updateUserForm.get('firstName')?.touched &&
+                updateUserForm.get('firstName')?.errors
+              "
+            >
+              <div *ngIf="updateUserForm.get('firstName')?.hasError('pattern')">
+                First name must contain only letters
+              </div>
+            </div>
+          </div>
+
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="lastName"
+              class="form-control form-control-lg"
+              placeholder="Enter your last name"
+              formControlName="lastName"
+            />
+            <label class="form-label" for="lastName">Last Name</label>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                updateUserForm.get('lastName')?.touched &&
+                updateUserForm.get('lastName')?.errors
+              "
+            >
+              <div *ngIf="updateUserForm.get('lastName')?.hasError('pattern')">
+                Last name must contain only letters
+              </div>
+            </div>
+          </div>
+
+          <div class="form-outline mb-4">
+            <input
+              type="date"
+              id="dob"
+              class="form-control form-control-lg"
+              formControlName="dob"
+            />
+            <label class="form-label" for="dob">Birth Date</label>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                updateUserForm.get('dob')?.touched &&
+                updateUserForm.get('dob')?.errors
+              "
+            >
+              <div *ngIf="updateUserForm.get('dob')?.hasError('required')">
+                please enter your birth date
+              </div>
+            </div>
+          </div>
+
+          <div class="row form-outline d-flex justify-content-between mb-4">
+            <label class="form-label">You are a:</label>
+            <div class="d-flex justify-content-evenly">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  id="male"
+                  formControlName="gender"
+                />
+                <label class="form-check-label" for="male"> male </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  id="female"
+                  formControlName="gender"
+                />
+                <label class="form-check-label" for="female"> female </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="submit"
+              class="btn btn-danger btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              [disabled]="!updateUserForm.valid"
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer
+    class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-danger"
+  >
+    <div class="text-white mb-3 mb-md-0">
+      Copyright © 2022. All rights reserved.
+    </div>
+  </footer>
+</section>

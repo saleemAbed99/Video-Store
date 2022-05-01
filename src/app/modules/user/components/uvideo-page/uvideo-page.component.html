@@ -1,0 +1,35 @@
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div *ngIf="video" class="row d-flex justify-content-center h-100">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h3 class="text-danger mb-5">{{ video?.title }}</h3>
+          <div
+            class="gallery-item mr-2 ml-2 alert alert-light d-flex flex-column justify-content-center align-items-center"
+          >
+            <div class="video-container" style="width: 100%">
+              <video
+                [src]="createVideoPath(video?.uri)"
+                type="video/mp4"
+                width="100%"
+                controls
+              ></video>
+            </div>
+            <div class="left ml-2 mt-3" style="width: 100%">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3>
+                  {{ video?.title }}
+                </h3>
+                <h6>From Gallery: {{ video?.galleryName }}</h6>
+              </div>
+              <p>
+                {{ video?.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+  
+        
+      </div>
+    </div>
+  </section>
+  

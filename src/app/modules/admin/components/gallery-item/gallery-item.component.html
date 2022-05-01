@@ -1,0 +1,20 @@
+<div class="gallery-item alert alert-danger">
+  <h3>
+    {{ gallery.name }}
+
+    <div class="operations-container align-self-end">
+      <fa-icon
+        [ngStyle]="{ color: 'red' }"
+        (click)="onDeleteGallery(gallery.id)"
+        [icon]="faTrash"
+      ></fa-icon>
+      <a routerLink="admin-gallery/{{ gallery.id }}">
+        <fa-icon [ngStyle]="{ color: 'red' }" [icon]="faVisit"></fa-icon>
+      </a>
+    </div>
+  </h3>
+  <div class="">
+    <span class="">Number of videos: {{ gallery.numberOfVideos }}</span>
+  </div>
+  <p>created at: {{ gallery.dateCreated.substr(0, 10) }}</p>
+</div>

@@ -1,0 +1,25 @@
+.gallery-item {
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  border: 2.5px solid #dc3545;
+  background-color: #fee8e9;
+  box-sizing: border-box;
+}
+
+.gallery-item h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.operations-container {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.left-container {
+  height: 100%;
+}

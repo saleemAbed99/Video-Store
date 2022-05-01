@@ -1,0 +1,89 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-6 mb-5 mb-lg-0 d-none d-lg-block">
+        <h1 class="my-5 display-3 fw-bold ls-tight text-danger">
+          Video Store <br />
+          <span class="text-muted">The Best Video Sharing Platform</span>
+        </h1>
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="alert alert-danger" *ngFor="let error of errors">
+          <div>{{ error }}</div>
+        </div>
+
+        <h1 class="text-center text-danger mb-5">Log In</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="username"
+              class="form-control form-control-lg"
+              placeholder="Enter a your username"
+              formControlName="username"
+            />
+            <label class="form-label" for="username">Username</label>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                loginForm.get('username')?.touched &&
+                loginForm.get('username')?.errors
+              "
+            >
+              <div *ngIf="loginForm.get('username')?.hasError('required')">
+                please enter your username
+              </div>
+              <div *ngIf="loginForm.get('username')?.hasError('pattern')">
+                username should contain only letters, numbers
+              </div>
+            </div>
+          </div>
+
+          <div class="form-outline mb-3">
+            <input
+              type="password"
+              id="password"
+              class="form-control form-control-lg"
+              placeholder="Enter password"
+              formControlName="password"
+            />
+            <label class="form-label" for="password">Password</label>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                loginForm.get('password')?.touched &&
+                loginForm.get('password')?.errors
+              "
+            >
+              <div *ngIf="loginForm.get('password')?.hasError('required')">
+                please enter a password
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="submit"
+              class="btn btn-danger btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              [disabled]="!loginForm.valid"
+            >
+              Login
+            </button>
+            <p class="small fw-bold mt-2 pt-1 mb-0">
+              Don't have an account?
+              <a routerLink="../register" class="link-danger">Register</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div
+    class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-danger"
+  >
+    <div class="text-white mb-3 mb-md-0">
+      Copyright © 2022. All rights reserved.
+    </div>
+  </div>
+</section>

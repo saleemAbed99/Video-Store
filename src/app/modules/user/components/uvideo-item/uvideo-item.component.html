@@ -1,0 +1,48 @@
+<div
+  class="gallery-item mr-2 ml-2 alert alert-danger d-flex flex-column justify-content-center align-items-center"
+  style="height: 23rem; width: 28rem; margin: 25px"
+>
+  <div class="video-container" style="width: 100%">
+    <video
+      [src]="createVideoPath(video.uri)"
+      type="video/mp4"
+      width="100%"
+      controls
+      preload="metadata"
+    ></video>
+  </div>
+  <div class="left ml-2 mt-3" style="width: 100%">
+    <div class="d-flex justify-content-between">
+      <h3>
+        {{ video.title }}
+      </h3>
+      <div class="operations-container align-self-end">
+        <h3>
+          <fa-icon
+            [ngStyle]="{ color: faAddColor }"
+            (click)="onToggleVideo(video.id)"
+            [icon]="faAdd"
+            style="margin-right: '25px'"
+          ></fa-icon>
+          <a
+            routerLink="/home/gallery/{{ video.galleryId }}/video/{{
+              video.id
+            }}"
+          >
+            <fa-icon [ngStyle]="{ color: 'red' }" [icon]="faVisit"></fa-icon>
+          </a>
+        </h3>
+      </div>
+    </div>
+    <div
+      class="d-flex align-items-center mt-2 mb-1"
+      *ngIf="hasRoute('/home/favorite')"
+    >
+      <a
+        class="btn btn-warning"
+        routerLink="/home/gallery/{{ video.galleryId }}"
+        >{{ video.galleryName }}</a
+      >
+    </div>
+  </div>
+</div>

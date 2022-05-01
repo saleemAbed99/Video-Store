@@ -1,0 +1,147 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center h-100">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div
+          class="alert alert-warning"
+          #deleteGalleryMessage
+          *ngIf="delete_gallery_message.length != 0"
+        >
+          <div>{{ delete_gallery_message }}</div>
+        </div>
+        <h3 class="text-danger mb-5">Your Galleries</h3>
+
+        <app-gallery-item
+          *ngFor="let gallery of galleries"
+          [gallery]="gallery"
+          (onDelete)="DeleteGallery($event)"
+        ></app-gallery-item>
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mb-3">
+        <h3 class="text-danger mb-5">Create New Gallery</h3>
+
+        <form
+          [formGroup]="createGalleryForm"
+          (ngSubmit)="onSubmitGallery()"
+          class="mb-4"
+        >
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="name"
+              class="form-control form-control-lg"
+              placeholder="Gallery Name"
+              formControlName="name"
+            />
+            <label class="form-label" for="name">Name</label>
+          </div>
+
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="description"
+              class="form-control form-control-lg"
+              placeholder="Description"
+              formControlName="description"
+            />
+            <label class="form-label" for="description">Description</label>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="submit"
+              class="btn btn-danger btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              [disabled]="!createGalleryForm.valid"
+            >
+              Create Gallery
+            </button>
+          </div>
+        </form>
+
+        <h3 class="text-danger mb-5">Upload New Video</h3>
+
+        <form [formGroup]="uploadVideoForm" (ngSubmit)="onUploadVideo()">
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="title"
+              class="form-control form-control-lg"
+              placeholder="Video Title"
+              formControlName="title"
+            />
+            <label class="form-label" for="title">Title</label>
+          </div>
+
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="description"
+              class="form-control form-control-lg"
+              placeholder="Description"
+              formControlName="description"
+            />
+            <label class="form-label" for="description">Description</label>
+          </div>
+
+          <div class="form-outline mb-4">
+            <select
+              class="form-select form-control-lg"
+              formControlName="galleryId"
+            >
+              <option ngValue="null" disabled>Select Country</option>
+              <option *ngFor="let gallery of galleries" [ngValue]="gallery.id">
+                {{ gallery.name }}
+              </option>
+            </select>
+            <label class="form-label">Select Gallery</label>
+          </div>
+
+          <div class="row" style="margin-bottom: 15px">
+            <div class="col-md-3">
+              <input
+                type="file"
+                accept="video/*"
+                #video
+                name="video"
+                id="uploader"
+                (change)="uploadFile(video.files)"
+                style="display: none"
+              />
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="video.click()"
+              >
+                Select Video
+              </button>
+
+              <div class="m-3">
+                {{ video.files[0]?.name }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <span class="upload" *ngIf="progress > 0"> {{ progress }}% </span>
+            <span class="upload" *ngIf="message">
+              {{ message }}
+            </span>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="submit"
+              class="btn btn-danger btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              [disabled]="!uploadVideoForm.valid"
+            >
+              Upload Video
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

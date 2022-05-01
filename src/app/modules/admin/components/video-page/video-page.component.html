@@ -1,0 +1,82 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div *ngIf="video" class="row d-flex justify-content-center h-100">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <h3 class="text-danger mb-5">{{ video?.title }}</h3>
+        <div
+          class="gallery-item mr-2 ml-2 alert alert-light d-flex flex-column justify-content-center align-items-center"
+        >
+          <div class="video-container" style="width: 100%">
+            <video
+              [src]="createVideoPath(video?.uri)"
+              type="video/mp4"
+              width="100%"
+              controls
+            ></video>
+          </div>
+          <div class="left ml-2 mt-3" style="width: 100%">
+            <div class="d-flex justify-content-between align-items-center">
+              <h3>
+                {{ video?.title }}
+              </h3>
+              <h6>From Gallery: {{ video?.galleryName }}</h6>
+            </div>
+            <p>
+              {{ video?.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mb-3">
+        <div
+          class="alert alert-success"
+          #message
+          *ngIf="successMessage.length != 0"
+        >
+          <div>{{ successMessage }}</div>
+        </div>
+        <h3 class="text-danger mb-5">Update Vedio</h3>
+
+        <form
+          [formGroup]="updateVideoForm"
+          (ngSubmit)="onSubmit()"
+          class="mb-4"
+        >
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="title"
+              class="form-control form-control-lg"
+              placeholder="Video Title"
+              formControlName="title"
+            />
+            <label class="form-label" for="name">Title</label>
+          </div>
+
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="description"
+              class="form-control form-control-lg"
+              placeholder="Description"
+              formControlName="description"
+            />
+            <label class="form-label" for="description">Description</label>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="submit"
+              class="btn btn-danger btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              [disabled]="!updateVideoForm.valid"
+            >
+              Update Video
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
